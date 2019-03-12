@@ -4,10 +4,23 @@ A pre-compiled binary for CH340/341 (HL340/341) USB-to-Serial UART Driver for Ra
 
 The driver will work both for CH340 & CH341 chips. Sometimes you will see the HL340/HL341 designation, it's just different names for the same hardware.
 
+## Note from co-author
+This version has modified and attached source code from other [GitHub repo](https://github.com/juliagoda/CH341SER) mainly because of these bugs:
+
+```
+error: implicit declaration of function ‘signal_pending’; did you mean ‘timer_pending’? [-Werror=implicit-function-declaration]
+error: unknown type name ‘wait_queue_t’; did you mean ‘wait_event’?
+```
+
+The version is also compiled for newer Raspberry Pi kernel 4.14.79 which is active in Noobs 3.0.0
+
+It is working correctly with this 3 USD USB-UART convertort which I bought on [AliExpress](https://www.aliexpress.com/item/1M-USB-to-RS232-Serial-9-Pin-Adapter-Cable-w-DB9-Female-to-DB25-Male-Connector/32836478283.html)
+
 # 1-Minute How-To
 ## Download the `ch34x.ko` onto the Raspberry Pi. See the **Releases** tab above. E.g.
+**UPDATED**
 ```
-wget https://github.com/aperepel/raspberrypi-ch340-driver/releases/download/4.4.11-v7/ch34x.ko
+wget https://github.com/koss822/raspberrypi-ch340-driver/releases/download/Rpi4.14.79-v7%2B/ch34x.ko
 ```
 ## Install the kernel module:
 ```
@@ -73,6 +86,7 @@ cat /dev/ttyUSB0
 Normally isn't required, but if for some reason you need to compile it for a different kernel version of Raspberry Pi, here it goes.
 
 ## Download the CH34x Driver Sources
+**MODIFIED DRIVERS ATTACHED TO SOURCE CODE**
 On the Raspberry Pi, go to http://www.wch.cn/download/CH341SER_LINUX_ZIP.html and click that big blue **Download** button. This is the manufacturer's website, but it's all in Chinese.
 
 ## Prepare the Kernel Build Environment
